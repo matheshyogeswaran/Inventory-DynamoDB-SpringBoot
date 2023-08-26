@@ -41,4 +41,28 @@ public class ProductController {
     public void deleteProduct(@PathVariable Long id) {
         productServiceBL.deleteProduct(id);
     }
+    @PostMapping("/{id}/update-stock")
+    public ProductDTO updateStockCount(@PathVariable Long id, @RequestParam Long stockCount) {
+        ProductDTO productDTO = productServiceBL.getProductById(id);
+
+        if (productDTO != null) {
+            long newStockCount = Math.max(productDTO.getStockCount() - stockCount, 0);
+            productDTO.setStockCount(newStockCount);
+            productServiceBL.updateProduct(id, productDTO);
+        }
+
+        return productDTO;
+    }
+
+    @GetMapping("/{id}/check-stock")
+    public boolean checkStockAvailability(@PathVariable Long id, @RequestParam Long stockCount) {
+        ProductDTO productDTO = productServiceBL.getProductById(id);
+
+        if (productDTO != null) {
+            return productDTO.getStockCount() >= stockCount;
+        }
+
+        return false;
+    }
+
 }

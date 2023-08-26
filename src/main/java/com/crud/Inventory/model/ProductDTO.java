@@ -8,8 +8,10 @@ public class ProductDTO {
     private Long productId;
     private String name;
     private double price;
-    private Integer stockCount;
+    private Long stockCount;
 
     // Other attributes if needed
 
 }
+
+

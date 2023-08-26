@@ -8,7 +8,6 @@ import lombok.Data;
 @DynamoDBTable(tableName = "product")
 @Data
 public class Product {
-
     @DynamoDBHashKey(attributeName = "productId")
     private Long productId;
 
@@ -19,7 +18,7 @@ public class Product {
     private double price;
 
     @DynamoDBAttribute
-    private Integer stockCount;
+    private Long stockCount;
 
     // Other attributes, getters, setters
 }
