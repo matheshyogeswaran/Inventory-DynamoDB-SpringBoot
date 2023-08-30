@@ -34,4 +34,3 @@ build/
 
 
 # Exclude application.properties for all profiles
-application.properties
